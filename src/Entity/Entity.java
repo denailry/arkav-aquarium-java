@@ -66,7 +66,7 @@ public class Entity extends Tick {
 	}
 
 	public void remove() {
-		return this.space.remove(this.id, this.type);
+		this.space.remove(this.id, this.type);
 	}
 
 	public String getImage() {
@@ -87,5 +87,9 @@ public class Entity extends Tick {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public void setDirection(double direction) {
+		this.direction = direction;
 	}
 }
