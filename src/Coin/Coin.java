@@ -5,6 +5,8 @@ public class Coin extends Item{
 
 	public Coin(double x, double y, double width, double height, int nilai){
 		super(x, y, EntityType.COIN);
+		this.setWidth(width);
+		this.setHeight(height);
 		this.value = nilai;
 		this.setDirection(Math.atan(1)*4.0/2.0);
 		this.setImage("koin-mahal.png");
