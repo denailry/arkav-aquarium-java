@@ -63,22 +63,19 @@ public class Snail extends Entity {
 	public void tick(LinkedList<Coin> coins, double delay) {
 		Coin coin = findNearestCoin(coins);
 		if (coin != null) {
-			this.setDirection(atan2(0, coin.getX()-this.getX()));
+			this.setDirection(Math.atan2(0, coin.getX()-this.getX()));
 			if (this.getDirection() < 1) {
 				this.setImage("snail-small-right.png");
 			} else {
 				this.setImage("snail-small-left.png");
 			}
 			if (!isAlignX(this, coin)) {
-				double newX = this.getX() + 200*cos(this.getDirection())*delay;
-				double newY = this.getY() + 200*sin(this.getDirection())*delay;
-				if (this.getSpace().moveTo(this.getId(), EntityType.SNAIL, newX, newY)) {
-					this.setX(newX);
-					this.setY(newY);
-				}
+				double newX = this.getX() + 200*Math.cos(this.getDirection())*delay;
+				double newY = this.getY() + 200*Math.sin(this.getDirection())*delay;
+				if (this.move(newX, newY)) {} //ini jadi begini abis ngeluarin boolean sih.. gimana? biarin gini aja?
 			}
 			if (this.isAbleToConsume(coin)) {
-				this.getSpace().remove(coin.getId(), EntityType.COIN);
+				coin.remove();
 			}
 		}
 	}
