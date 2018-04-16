@@ -1,21 +1,21 @@
 public class Fish extends Entity {
 	
-	private	boolean dirRight; //bernilai true jika ke arah kanan dan false jika ke arah kiri
-	private	boolean hunger; //bernilai true apabila ikan lapar
+	protected	boolean dirRight; //bernilai true jika ke arah kanan dan false jika ke arah kiri
+	protected	boolean hunger; //bernilai true apabila ikan lapar
 
 		// Constructor
 		// Need position x and y
-	public Fish(double x, double y, double width, double height, char type){
-		super(x, y, width, height, type);
+	public Fish(double x, double y, EntityType type){
+		super(x, y, type);
 		setDirRight(true);
 		setHunger(true);
 	}
 
-	public void setDirRight(bool dir){
+	public void setDirRight(boolean dir){
 		dirRight = dir;
 	}
 
-	public void setHunger(bool hgr){
+	public void setHunger(boolean hgr){
 		hunger = hgr;
 	}
 
