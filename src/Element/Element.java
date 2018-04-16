@@ -1,7 +1,7 @@
 public class Element <E> {
   //attribute
   private E *info;
-  private Element<E> *next;
+  private Element <E> *next;
   //method
   public Element() {
     this.info = null;
@@ -13,19 +13,19 @@ public class Element <E> {
     this.next = null;
   }
 
-  public E* getInfo() {
+  public E getInfo() {
     return this.info;
   }
 
-  public Element<E>* getNext() {
+  public Element<E> getNext() {
     return this.next;
   }
 
-  public void setInfo(E *info) {
+  public void setInfo(E info) {
     this.info = info;
   }
 
-  public void setNext(Element<E> *next) {
+  public void setNext(Element<E> next) {
     this.next = next;
   }
 }
