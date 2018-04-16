@@ -1,12 +1,12 @@
-public class LinkedList <E> {
+public class LinkedList<E> {
   //attribute
-  private Element <E> first;
+  private Element<E> first;
   //method
   public LinkedList() {
     this.first = null;
   }
 
-  public bool isEmpty() {
+  public boolean isEmpty() {
     return first == null;
   }
 
@@ -21,7 +21,7 @@ public class LinkedList <E> {
       return P.getInfo();
   }
 
-  public bool remove(int index) {
+  public boolean remove(int index) {
     if (index < 0 || isEmpty()) {
       return false;
     } else if (index == 0) {
@@ -51,11 +51,11 @@ public class LinkedList <E> {
       this.first.setInfo(info);
       this.first.setNext(null);
     } else {
-      Element <E> elmt = this.first;
+      Element<E> elmt = this.first;
       while (elmt.getNext() != null) {
         elmt = elmt.getNext();
       }
-      Element <E> newElement = new Element <E>();
+      Element<E> newElement = new Element <E>();
       elmt.setNext(newElement);
       elmt.getNext().setInfo(info);
       elmt.getNext().setNext(null);

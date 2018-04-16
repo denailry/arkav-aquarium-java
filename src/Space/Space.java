@@ -8,11 +8,11 @@
 
 public interface Space {
   // Give Entity possibility to move in Space or derived class of Space
-	bool moveTo(int entityId, int entityType, double newX, double newY) = 0;
+	boolean moveTo(int entityId, int entityType, double newX, double newY);
 
 	// Give Entity possibility to remove/consume in Space or derived class of Space
-	void remove(int entityId, int entityType) = 0;
+	void remove(int entityId, int entityType);
 
 	// Give Entity information about another Entity existence by its id
-	bool isExist(int entityId, int entityType) = 0;
+	boolean isExist(int entityId, int entityType);
 }
