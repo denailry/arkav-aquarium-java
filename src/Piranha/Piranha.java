@@ -2,10 +2,18 @@ import java.lang.*;
 import java.util.Random;
 
 public class Piranha extends Fish{
+	private static int lapar=1000;
+	private static int mati=2000;
 	private int lastFed;
 	private int lastDrift;
 	private int driftLength;
 
+	private double distanceWithGuppy(double pos1X, double pos1Y, double pos2X, double pos2Y) {
+		double xDiff = Math.abs(pos1X - pos2X);
+		double yDiff = Math.abs(pos1Y - pos2Y);
+		return Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+	}
+	
 	public Guppy findNearestGuppy(LinkedList<Guppy> guppies){
 		Element<Guppy> eGuppy = guppies.getFirst();
 		if (eGuppy != null){
@@ -88,7 +96,7 @@ public class Piranha extends Fish{
 		boolean cek = false;
 		
 		if (this.hunger){
-			if ((this.time - this.lastFed)>=LAPAR+MATI){
+			if ((this.time - this.lastFed)>=lapar+mati){
 				this.remove();
 				cek = true;
 			}else{
@@ -125,7 +133,7 @@ public class Piranha extends Fish{
 							double newY = this.getY() + 100*Math.sin(this.getDirection())*delay;
 							if (this.move(newX, newY)) {
 							//Update atribut:
-								if ((this.time - this.lastFed)>=LAPAR){
+								if ((this.time - this.lastFed)>=lapar){
 									setHunger(true);
 								}
 							}else{
@@ -165,7 +173,7 @@ public class Piranha extends Fish{
 			double newY = this.getY() + 100*Math.sin(this.getDirection())*delay;
 			if (this.move(newX, newY)) {
 			//Update atribut:
-				if ((this.time - this.lastFed)>=LAPAR){
+				if ((this.time - this.lastFed)>=lapar){
 					setHunger(true);
 				}
 			}else{
