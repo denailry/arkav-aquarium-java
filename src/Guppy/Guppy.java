@@ -43,7 +43,7 @@ public class Guppy extends Fish{
 	}
 
 	private boolean isAbleToConsume(Food food){
-		return (this.getSpace().isExist(food.getId(), EntityType.FOOD) && (
+		return (food.isExist() && (
 			(food.getX() > this.getLeft()) && 
 			(food.getX() < this.getRight()) &&
 			(food.getY() > this.getTop()) && 

@@ -37,7 +37,7 @@ public class Piranha extends Fish{
 	}
 
 	public boolean isAbleToConsume(Guppy guppy){
-		return (this.isExist(guppy.getId(), EntityType.GUPPY) && (
+		return (guppy.isExist() && (
 			(guppy.getX() > this.getLeft()) && 
 			(guppy.getX() < this.getRight()) &&
 			(guppy.getY() > this.getTop()) && 
