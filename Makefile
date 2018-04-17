@@ -1,8 +1,30 @@
 JC = javac
 LIB = ;lib/junit-4.12.jar
 SOURCES = \
-	src/Sample/Sample.java \
-	src/Sample/SampleTest.java
+	src/Tick/Tick.java \
+	src/Space/Space.java \
+	src/Entity/Entity.java \
+	src/Entity/EntityTest.java \
+	src/Entity/EntityType.java \
+	src/Item/Item.java \
+	src/Item/ItemTest.java \
+	src/Food/Food.java \
+	src/Food/FoodTest.java \
+	src/Coin/Coin.java \
+	src/Coin/CoinTest.java \
+	src/Element/Element.java \
+	src/Element/ElementTest.java \
+	src/LinkedList/LinkedList.java \
+	src/LinkedList/LinkedListTest.java \
+	src/Fish/Fish.java \
+	src/Fish/FishTest.java \
+	src/Guppy/Guppy.java \
+	src/Guppy/GuppyTest.java \
+	src/Piranha/Piranha.java \
+	src/Piranha/PiranhaTest.java \
+	src/Aquarium/Aquarium.java \
+	src/Aquarium/AquariumTest.java \
+	src/Screen.java
 TARGET = bin
 
 default:
