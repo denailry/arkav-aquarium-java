@@ -1,3 +1,3 @@
-	public static enum EntityType {
-		COIN, FOOD, GUPPY, PIRANHA, SNAIL
-	}
+public enum EntityType {
+	COIN, FOOD, GUPPY, PIRANHA, SNAIL
+}
