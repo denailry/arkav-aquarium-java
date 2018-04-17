@@ -1,6 +1,7 @@
 JC = javac
 LIB = ;lib/junit-4.12.jar
 SOURCES = \
+	src/Tester.java \
 	src/Tick/Tick.java \
 	src/Space/Space.java \
 	src/Entity/EntityType.java \

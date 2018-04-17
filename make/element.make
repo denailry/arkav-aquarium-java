@@ -1,6 +1,7 @@
 JC = javac
 LIB = ;lib/junit-4.12.jar
 SOURCES = \
+	src/Tester.java \
 	src/Element/Element.java \
 	src/Element/ElementTest.java
 TARGET = bin
