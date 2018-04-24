@@ -32,9 +32,7 @@ public class LinkedList<E> {
     if (index < 0 || isEmpty()) {
       return false;
     } else if (index == 0) {
-      // Element<E> oldFirst = this.first;
       this.first = this.first.getNext();
-      // delete oldFirst;
     } else {
       index--;
       Element<E> elmt = this.first;
@@ -47,7 +45,6 @@ public class LinkedList<E> {
       }
       Element<E> oldElmt = elmt.getNext();
       elmt.setNext(oldElmt.getNext());
-      // delete oldElmt;
     }
     this.neff--;
     return true;
@@ -77,6 +74,7 @@ public class LinkedList<E> {
       this.add(elmt.getInfo());
       elmt = elmt.getNext();
     }
+    this.add(elmt.getInfo());
   }
 
   public Element<E> getFirst() {

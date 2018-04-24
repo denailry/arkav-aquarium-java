@@ -1,14 +1,13 @@
 public class Element<E> {
-  //attribute
   private E  info;
   private Element <E>  next;
-  //method
+
   public Element() {
     this.info = null;
     this.next = null;
   }
 
-  public Element(E  info) {
+  public Element(E info) {
     this.info = info;
     this.next = null;
   }
