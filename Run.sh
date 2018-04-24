@@ -1,2 +1,2 @@
-javac src/Runner.java -d bin
+javac helper/Runner.java -d bin
 java -cp bin Runner
