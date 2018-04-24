@@ -1,3 +1,10 @@
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.Ignore;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 public class TickTest {
 	public class DummyTick extends Tick {
 		@Override
@@ -11,9 +18,9 @@ public class TickTest {
 		DummyTick tick = new DummyTick();
 		int nTime = 2;
 		for (int i = 0; i < nTime; i++) {
-			tick.tick();
+			tick.tick(0);
 		}
-		assertEquals("Wrong DummyTick configuration", nTime, nTime.getTime());
+		assertEquals("Wrong DummyTick configuration", nTime, tick.getTime());
 	}
 
 	@Test
@@ -21,7 +28,7 @@ public class TickTest {
 		DummyTick tick = new DummyTick();
 		int nTime = 2;
 		for (int i = 0; i < nTime; i++) {
-			tick.tick();
+			tick.tick(0);
 		}
 		tick.tickReset();
 		assertEquals("Tick reset should set time to zero", 0, tick.getTime());
@@ -32,7 +39,7 @@ public class TickTest {
 		DummyTick tick = new DummyTick();
 		int difference = 10;
 		for (int i = 0; i < difference; i++) {
-			tick.tick();
+			tick.tick(0);
 		}
 		int time = tick.getTime();
 		tick.tickReset();

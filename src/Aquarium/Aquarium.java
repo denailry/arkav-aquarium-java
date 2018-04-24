@@ -111,12 +111,12 @@ public class Aquarium extends Tick implements Space {
 
 	public void tick(double delay) {
 		if (!this.gameOver) {
-			// tickCoins(delay);
-			// tickFoods(delay);
-			// tickGuppies(delay);
-			// tickPiranhas(delay);
-			// tickSnail(delay);
-			// checkLoseCondition();
+			tickCoins(delay);
+			tickFoods(delay);
+			tickGuppies(delay);
+			tickPiranhas(delay);
+			tickSnail(delay);
+			checkLoseCondition();
 		}
 	}
 
@@ -142,10 +142,10 @@ public class Aquarium extends Tick implements Space {
 
 	@Override
 	public boolean isAbleMovingTo(double newX, double newY) {
-		return (newX > this.left &&
-				newX < this.right &&
-				newY > this.top &&
-				newY < this.bottom
+		return (newX >= this.left &&
+				newX <= this.right &&
+				newY >= this.top &&
+				newY <= this.bottom
 			);
 	}
 

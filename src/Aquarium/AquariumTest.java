@@ -20,8 +20,8 @@ public class AquariumTest {
 	@Before
 	public void initialize() {
 		this.left = 0;
-		this.right = 0;
-		this.top = 100;
+		this.right = 100;
+		this.top = 0;
 		this.bottom = 100;
 		this.aquarium = new Aquarium(this.left, this.right, this.top, this.bottom);
 	}
@@ -41,10 +41,10 @@ public class AquariumTest {
 
 		newX = this.top + 5; 
 		newY = this.left + 5;
-		assertTrue("Should be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
+		assertTrue("1. (inside) Should be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
 		newX = this.left;
 		newY = this.top;
-		assertTrue("Should be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
+		assertTrue("2. (inside) Should be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
 	}
 
 	@Test
@@ -54,13 +54,13 @@ public class AquariumTest {
 
 		newX = this.left - 1;
 		newY = this.top;
-		assertFalse("Should not be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
+		assertFalse("1. (outside) Should not be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
 		newX = this.left;
 		newY = this.bottom + 1;
-		assertFalse("Should not be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
+		assertFalse("2. (outside) Should not be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
 		newX = this.right + 5;
 		newY = this.bottom + 5;
-		assertFalse("Should not be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
+		assertFalse("3. (outside) Should not be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
 	}
 
 	@Ignore
@@ -103,11 +103,13 @@ public class AquariumTest {
 		assertFalse("Snail should have been removed", this.aquarium.isExist(4, EntityType.SNAIL));
 	}
 
+	@Ignore
 	@Test
 	public void testTick() {
 		this.aquarium.tick(0);
 	}
 
+	@Ignore
 	@Test
 	public void testGameOver() {
 		Aquarium aq = new Aquarium(0, 0, 0, 0);
