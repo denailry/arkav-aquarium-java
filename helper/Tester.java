@@ -16,7 +16,7 @@ public class Tester {
 
 	      	FileOutputStream f;
       		try {
-  		      	f = new FileOutputStream("log/log.txt");
+  		      	f = new FileOutputStream("log/test-log.txt");
 				System.setErr(new PrintStream(f));
       		} catch (FileNotFoundException e) {
       			f = null;
