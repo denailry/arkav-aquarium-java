@@ -70,11 +70,10 @@ public class LinkedList<E> {
 
   public void add(LinkedList<E> linkedList) {
     Element<E> elmt = linkedList.first;
-    while (elmt.getNext() != null) {
+    while (elmt != null) {
       this.add(elmt.getInfo());
       elmt = elmt.getNext();
     }
-    this.add(elmt.getInfo());
   }
 
   public Element<E> getFirst() {

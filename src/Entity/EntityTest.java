@@ -60,6 +60,7 @@ public class EntityTest {
 		assertEquals("Piranha should have type PIRANHA", EntityType.PIRANHA, piranha.getType());
 		assertEquals("Food should have type FOOD", EntityType.FOOD, food.getType());
 		assertEquals("Snail should have type SNAIL", EntityType.SNAIL, snail.getType());
+		assertEquals("Entity should have id=-1 when entity just constructed", -1, coin.getId());
 	}
 
 	@Test

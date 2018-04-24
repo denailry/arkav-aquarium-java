@@ -13,6 +13,7 @@ public class Entity extends Tick {
 		this.x = x;
 		this.y = y;
 		this.type = type;
+		this.id = -1;
 	}
 
 	@Override

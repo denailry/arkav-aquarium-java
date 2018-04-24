@@ -63,7 +63,6 @@ public class AquariumTest {
 		assertFalse("3. (outside) Should not be able to move to " + pointToString(newX, newY), this.aquarium.isAbleMovingTo(newX, newY));
 	}
 
-	@Ignore
 	@Test
 	public void testAddEntity() {
 		Coin coin = new Coin(0, 0, 0, 0, 0);
@@ -79,15 +78,14 @@ public class AquariumTest {
 		this.aquarium.add(piranha);
 		this.aquarium.add(snail);
 
-		assertTrue("Coin should be exist", this.aquarium.isExist(0, EntityType.COIN));
-		assertTrue("Food should be exist", this.aquarium.isExist(1, EntityType.FOOD));
-		assertTrue("Piranha should be exist", this.aquarium.isExist(2, EntityType.PIRANHA));
-		assertTrue("Guppy should be exist", this.aquarium.isExist(3, EntityType.GUPPY));
-		assertTrue("Snail should be exist", this.aquarium.isExist(4, EntityType.SNAIL));
-		assertFalse("Something should not be exist", this.aquarium.isExist(5, EntityType.COIN));
+		assertTrue("Coin should be exist", this.aquarium.isExist(coin.getId(), EntityType.COIN));
+		assertTrue("Food should be exist", this.aquarium.isExist(food.getId(), EntityType.FOOD));
+		assertTrue("Piranha should be exist", this.aquarium.isExist(piranha.getId(), EntityType.PIRANHA));
+		assertTrue("Guppy should be exist", this.aquarium.isExist(guppy.getId(), EntityType.GUPPY));
+		assertTrue("Snail should be exist", this.aquarium.isExist(snail.getId(), EntityType.SNAIL));
+		assertFalse("Something should not be exist", this.aquarium.isExist(something.getId(), EntityType.COIN));
 	}
 
-	@Ignore
 	@Test
 	public void testRemoveEntity() {
 		this.aquarium.remove(0, EntityType.COIN);
@@ -103,17 +101,15 @@ public class AquariumTest {
 		assertFalse("Snail should have been removed", this.aquarium.isExist(4, EntityType.SNAIL));
 	}
 
-	@Ignore
 	@Test
 	public void testTick() {
 		this.aquarium.tick(0);
 	}
 
-	@Ignore
 	@Test
 	public void testGameOver() {
 		Aquarium aq = new Aquarium(0, 0, 0, 0);
-		aq.buy(aq.getMoney() - (aq.getMoney() - 9));
+		aq.buy(aq.getMoney() - 9);
 		aq.tick(0);
 		assertTrue("Should have been game over", aq.isGameOver());
 	}

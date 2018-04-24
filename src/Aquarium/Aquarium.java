@@ -176,8 +176,10 @@ public class Aquarium extends Tick implements Space {
 			index = search(this.foods, entityId);
 		} else if (entityType == EntityType.GUPPY) {
 			index = search(this.guppies, entityId);
+		} else if (entityType == EntityType.PIRANHA) {
+			index = search(this.piranhas, entityId);
 		} else if (entityType == EntityType.SNAIL) {
-			if (this.snail.getId() == entityId) {
+			if (this.snail != null && this.snail.getId() == entityId) {
 				index = 0;
 			}
 		}

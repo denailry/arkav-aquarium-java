@@ -14,7 +14,7 @@ public class LinkedListTest {
 	}
 
 	@Test
-	public void testAddElementToLinkedList()  {
+	public void testAddElement()  {
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		Integer one = 1;
 		Integer two = 2;
@@ -30,7 +30,7 @@ public class LinkedListTest {
 
 
 	@Test
-	public void testAddLinkedListToLinkedList() {
+	public void testAddLinkedList() {
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		Integer one = 1;
 		Integer two = 2;
@@ -48,6 +48,14 @@ public class LinkedListTest {
 	}
 
 	@Test
+	public void testAddZeroElementLinkedList() {
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		LinkedList<Integer> addedList = new LinkedList<Integer>();
+		addedList.add(list);
+		assertEquals("Size after adding zero element list should be 0", 0, addedList.size());
+	}
+
+	@Test
 	public void testCopyConstruction() {
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		Integer one = 1;
@@ -62,5 +70,12 @@ public class LinkedListTest {
 		assertEquals("Element 'One' should be exist at index 0", one, copyList.get(0));
 		assertEquals("Element 'Two' should be exist at index 1", two, copyList.get(1));
 		assertEquals("Element 'Three' should be exist at index 2", three, copyList.get(2));
+	}
+
+	@Test
+	public void testCopyZeroElementLinkedListConstruction() {
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		LinkedList<Integer> copyList = new LinkedList<Integer>(list);
+		assertEquals("Size after copying 0 element should be 0", 0, copyList.size());
 	}
 }
