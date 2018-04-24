@@ -52,8 +52,12 @@ public class Entity extends Tick {
 		return this.direction;
 	}
 
+	public EntityType getType() {
+		return this.type;
+	}
+
 	public boolean move(double x, double y) {
-		boolean isMoved = this.space.moveTo(this.id, this.type, x, y); 
+		boolean isMoved = this.space.isAbleMovingTo(x, y); 
 		if (isMoved) {
 			this.x = x;
 			this.y = y;
@@ -78,11 +82,19 @@ public class Entity extends Tick {
 	}
 
 	public void setWidth(double width) {
-		this.radX = width/2.0;
+		if (width < 0) {
+			this.radX = 0;
+		} else {
+			this.radX = width/2.0;
+		}
 	}
 
 	public void setHeight(double height) {
-		this.radY = height/2.0;
+		if (height < 0) {
+			this.radY = 0;
+		} else {
+			this.radY = height/2.0;
+		}
 	}
 
 	public void setImage(String image) {
@@ -91,5 +103,9 @@ public class Entity extends Tick {
 
 	public void setDirection(double direction) {
 		this.direction = direction;
+	}
+
+	public void setSpace(Space space) {
+		this.space = space;
 	}
 }

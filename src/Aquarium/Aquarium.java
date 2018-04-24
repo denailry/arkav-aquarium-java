@@ -8,10 +8,10 @@ public class Aquarium extends Tick implements Space {
 	private int bottom;
 
 	// Object attributes
-	private LinkedList<Coin> coins;
-	private LinkedList<Food> foods;
-	private LinkedList<Guppy> guppies;
-	private LinkedList<Piranha> piranhas;
+	private LinkedList<Coin> coins = new LinkedList<Coin>();
+	private LinkedList<Food> foods = new LinkedList<Food>();
+	private LinkedList<Guppy> guppies = new LinkedList<Guppy>();
+	private LinkedList<Piranha> piranhas = new LinkedList<Piranha>();
 	private Snail snail;
 
 	// Object Counter
@@ -19,7 +19,7 @@ public class Aquarium extends Tick implements Space {
 
 	// Game attributes
 	private int money;
-	private bool gameOver;
+	private boolean gameOver;
 
 	public Aquarium(int left, int right, int top, int bottom) {
 		this.left = left;
@@ -34,7 +34,7 @@ public class Aquarium extends Tick implements Space {
 	private void tickCoins(double delay) {
 		Element<Coin> eCoin = coins.getFirst();
 		while (eCoin != null) {
-			eCoin.getInfo().tick();
+			eCoin.getInfo().tick(delay);
 			eCoin = eCoin.getNext();
 		}
 	}
@@ -88,7 +88,7 @@ public class Aquarium extends Tick implements Space {
 	private <T extends Entity> int search(LinkedList<T> objectList, int entityId) {
 		Element<T> eObject = objectList.getFirst();
 		int i = 0;
-		bool found = false;
+		boolean found = false;
 		while (eObject != null && !found) {
 			if (eObject.getInfo().getId() == entityId) {
 				return i;
@@ -110,25 +110,26 @@ public class Aquarium extends Tick implements Space {
 	}
 
 	public void tick(double delay) {
-		if (!this->gameOver) {
-			tickCoins(delay);
-			tickFoods(delay)
-			tickGuppies(delay);
-			tickPiranhas(delay);
-			tickSnail(delay);
+		if (!this.gameOver) {
+			// tickCoins(delay);
+			// tickFoods(delay);
+			// tickGuppies(delay);
+			// tickPiranhas(delay);
+			// tickSnail(delay);
+			// checkLoseCondition();
 		}
 	}
 
 	public <T extends Entity> boolean add(T object) {
-		if (object.getType() == Entity.TYPE_COIN) {
+		if (object.getType() == EntityType.COIN) {
 			coins.add((Coin) object);
-		} else if (object.getType() == Entity.TYPE_FOOD) {
+		} else if (object.getType() == EntityType.FOOD) {
 			foods.add((Food) object);
-		} else if (object.getType() == Entity.TYPE_GUPPY) {
+		} else if (object.getType() == EntityType.GUPPY) {
 			guppies.add((Guppy) object);
-		} else if (object.getType() == Entity.TYPE_PIRANHA) {
+		} else if (object.getType() == EntityType.PIRANHA) {
 			piranhas.add((Piranha) object);
-		} else if (object.getType() == Entity.TYPE_SNAIL) {
+		} else if (object.getType() == EntityType.SNAIL) {
 			this.snail = (Snail) object;
 		} else {
 			return false;
@@ -139,7 +140,8 @@ public class Aquarium extends Tick implements Space {
 		return true;
 	}
 
-	public boolean moveTo(int entityId, dooble newX, double newY) {
+	@Override
+	public boolean isAbleMovingTo(double newX, double newY) {
 		return (newX > this.left &&
 				newX < this.right &&
 				newY > this.top &&
@@ -147,30 +149,38 @@ public class Aquarium extends Tick implements Space {
 			);
 	}
 
-	public void remove(int entityId, int entityType) {
-		if (entityType == Entity.TYPE_COIN) {
+	@Override
+	public void remove(int entityId, EntityType entityType) {
+		if (entityType == EntityType.COIN) {
 			Coin coin = putOut(this.coins, entityId);
 			if (coin != null) {
 				this.money += coin.getValue();
 			}
-		} else if (entityType == Entity.TYPE_FOOD) {
+		} else if (entityType == EntityType.FOOD) {
 			putOut(this.foods, entityId);
-		} else if (entityType == Entity.TYPE_GUPPY) {
+		} else if (entityType == EntityType.GUPPY) {
 			putOut(this.guppies, entityId);
-		} else if (entityType == Entity.TYPE_PIRANHA) {
+		} else if (entityType == EntityType.PIRANHA) {
 			putOut(this.piranhas, entityId);
+		} else if (entityType == EntityType.SNAIL) {
+			this.snail = null;
 		}
 	} 
 
-	public boolean isExist(int entityId, int entityType) {
+	@Override
+	public boolean isExist(int entityId, EntityType entityType) {
 		int index = -1;
-		if (entityType == Entity.TYPE_COIN) {
+		if (entityType == EntityType.COIN) {
 			index = search(this.coins, entityId);
-		} else if (entityType == Entity.TYPE_FOOD) {
+		} else if (entityType == EntityType.FOOD) {
 			index = search(this.foods, entityId);
-		} else if (entityType == Entity.TYPE_GUPPY) {
+		} else if (entityType == EntityType.GUPPY) {
 			index = search(this.guppies, entityId);
-		} 
+		} else if (entityType == EntityType.SNAIL) {
+			if (this.snail.getId() == entityId) {
+				index = 0;
+			}
+		}
 		return (index != -1);
 	}
 
@@ -206,7 +216,7 @@ public class Aquarium extends Tick implements Space {
 		return this.money;
 	}
 
-	public bool isGameOver() {
+	public boolean isGameOver() {
 		return this.gameOver;
 	}
 }

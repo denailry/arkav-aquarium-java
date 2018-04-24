@@ -13,6 +13,7 @@ SOURCES = \
 	src/LinkedList/LinkedList.java \
 	src/Fish/Fish.java \
 	src/Guppy/Guppy.java \
+	src/Snail/Snail.java \
 	src/Piranha/Piranha.java \
 	src/Aquarium/Aquarium.java \
 	src/Aquarium/AquariumTest.java

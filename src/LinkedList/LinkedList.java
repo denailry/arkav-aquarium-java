@@ -1,9 +1,16 @@
 public class LinkedList<E> {
-  //attribute
+  private int neff;
+
   private Element<E> first;
-  //method
+
   public LinkedList() {
     this.first = null;
+    this.neff = 0;
+  }
+
+  public LinkedList(LinkedList<E> linkedList) {
+    this.neff = 0;
+    this.add(linkedList);
   }
 
   public boolean isEmpty() {
@@ -42,6 +49,7 @@ public class LinkedList<E> {
       elmt.setNext(oldElmt.getNext());
       // delete oldElmt;
     }
+    this.neff--;
     return true;
   }
 
@@ -60,9 +68,22 @@ public class LinkedList<E> {
       elmt.getNext().setInfo(info);
       elmt.getNext().setNext(null);
     }
+    this.neff++;
+  }
+
+  public void add(LinkedList<E> linkedList) {
+    Element<E> elmt = linkedList.first;
+    while (elmt.getNext() != null) {
+      this.add(elmt.getInfo());
+      elmt = elmt.getNext();
+    }
   }
 
   public Element<E> getFirst() {
     return this.first;
+  }
+
+  public int size() {
+    return this.neff;
   }
 }

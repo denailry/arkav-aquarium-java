@@ -16,4 +16,8 @@ public abstract class Tick {
 	protected int tickDiff(int time) {
 		return  Math.abs(this.time - time);
 	}
+
+	public int getTime() {
+		return this.time;
+	}
 }

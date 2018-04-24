@@ -33,7 +33,9 @@ public class Tester {
 	      	System.out.println(".");
 	      	System.out.println(".");
 	      	System.out.println("RUNTIME: " + result.getRunTime() + " ms");
-	      	System.out.println("SUCCESS: " + (result.getRunCount() - result.getFailureCount()) + ", FAILED: " + result.getFailureCount());
+	      	System.out.println("SUCCESS: " + (result.getRunCount() - result.getFailureCount()) + 
+	      		", FAILED: " + result.getFailureCount() +
+	      		", IGNORE: " + result.getIgnoreCount());
 	      	if (result.wasSuccessful()) {
 	      		System.out.println(args[0] + " is ACCEPTED!");
 	      	} else {
