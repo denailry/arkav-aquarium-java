@@ -20,7 +20,7 @@ public class Guppy extends Fish{
 		return Math.sqrt(xDiff*xDiff + yDiff*yDiff);
 	}
 	
-	private Food findNearestFood(LinkedList<Food> foods){
+	public Food findNearestFood(LinkedList<Food> foods){
 		Element<Food> eFood = foods.getFirst();
 		if (eFood != null){
 			Food nearestFood = eFood.getInfo();
@@ -42,7 +42,7 @@ public class Guppy extends Fish{
 		}
 	}
 
-	private boolean isAbleToConsume(Food food){
+	public boolean isAbleToConsume(Food food){
 		return (food.isExist() && (
 			(food.getX() > this.getLeft()) && 
 			(food.getX() < this.getRight()) &&
