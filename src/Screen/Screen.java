@@ -41,6 +41,10 @@ public class Screen extends JPanel {
 	private Aquarium aquarium;
 	private double secondPerFrame;
 	private boolean running;
+	private boolean egg_one;
+	private boolean egg_two;
+	private boolean egg_three;
+	private boolean win;
 
 	public Screen(int width, int height, int left, int top, double secondPerFrame) throws IOException, FontFormatException {
 		this.defaultImage = ImageIO.read(new File(DEFAULT_IMAGE));
@@ -75,7 +79,7 @@ public class Screen extends JPanel {
 		drawDummyEntities(g);
 		aquarium.tick(secondPerFrame);
 		if (this.running) {
-			if (aquarium.isGameOver()) {
+			if (!this.win && aquarium.isGameOver()) {
 				DummyEntity gameOverMessage = new DummyEntity(this.width/2, this.height/2, 3600);
 				gameOverMessage.setImage("game-over.png");
 				this.dummyList.add(gameOverMessage);
@@ -105,11 +109,36 @@ public class Screen extends JPanel {
 						aquarium.add(new Piranha(randomX(), this.aquarium.getTop(), 0, 0));
 					}
 				} else if (area.getName().equals(AREA_NAMES[2])) {
-					buySuccess = aquarium.buy(ShopItem.EGG_1.price);
+					if (!egg_one) {
+						buySuccess = aquarium.buy(ShopItem.EGG_1.price);
+						if (buySuccess) {
+							egg_one = true;
+							Area egg1 = areas.get(3);
+							egg1.setImage("shop-icon-telur-1-sold.jpg");
+						}
+					}
 				} else if (area.getName().equals(AREA_NAMES[3])) {
-					buySuccess = aquarium.buy(ShopItem.EGG_2.price);
+					if (!egg_two) {
+						buySuccess = aquarium.buy(ShopItem.EGG_2.price);
+						if (buySuccess) {
+							egg_two = true;
+							Area egg2 = areas.get(4);
+							egg2.setImage("shop-icon-telur-2-sold.jpg");
+						}
+					}
 				} else if (area.getName().equals(AREA_NAMES[4])) {
-					buySuccess = aquarium.buy(ShopItem.EGG_3.price);
+					if (!egg_three) {
+						buySuccess = aquarium.buy(ShopItem.EGG_2.price);
+						if (buySuccess) {
+							egg_three = true;
+							Area egg3 = areas.get(5);
+							egg3.setImage("shop-icon-telur-3-sold.jpg");
+							DummyEntity winMessage = new DummyEntity(this.width/2, this.height/2, 3600);
+							winMessage.setImage("game-win.png");
+							this.dummyList.add(winMessage);
+							this.win = true;
+						}
+					}
 				}
 				if (!buySuccess) {
 					DummyEntity notEnoughMoneyMessage = new DummyEntity(this.width-200, 60, 1.5);
