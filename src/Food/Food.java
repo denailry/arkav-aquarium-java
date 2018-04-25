@@ -13,7 +13,7 @@ public class Food extends Item{
 		double newX = this.getX() + 50*Math.cos(this.getDirection())*delay;
 		double newY = this.getY() + 50*Math.sin(this.getDirection())*delay;
 		if (!(this.move(newX, newY))) {
-			this.remove();	
+			this.remove();
 		}
 	}
 }
