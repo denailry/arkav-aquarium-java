@@ -16,7 +16,7 @@ public class GuppyTest {
 		Aquarium aquarium = new Aquarium(200,200,200,200);	
 	  	Guppy guppy = new Guppy(3,4,100,100);
 	  	Food food = new Food(3,4,50,50);
-	  	aquarium.add(food);
+	  	boolean bool = aquarium.add(food);
 	  	assertTrue("Should be able to consume", guppy.isAbleToConsume(food));
 	}
 
