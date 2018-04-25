@@ -94,7 +94,7 @@ public class Piranha extends Fish{
 
 	public void tick(LinkedList<Guppy> guppies, LinkedList<Coin> coins, double delay){	//belum diimplementasi
 		boolean cek = false;
-		
+		super.tick(delay);
 		if (this.hunger){
 			if ((this.time - this.lastFed)>=lapar+mati){
 				this.remove();

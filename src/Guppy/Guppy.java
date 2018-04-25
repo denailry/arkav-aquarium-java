@@ -6,7 +6,6 @@ public class Guppy extends Fish{
 	private static int koin=640;
 	private static int mati=2000;
 	private static int ngegedein=5;
-	private int C; // Waktu periode ikan mengeluarkan koin
   private int G;
 	private int growthCounter;
   private int lastFed;
@@ -94,6 +93,7 @@ public class Guppy extends Fish{
 	}
 
 	public void tick(LinkedList<Food> foods, LinkedList<Coin> coins, double delay){
+		super.tick(delay);
 		boolean cek = false;
 		if (((this.time)-lastCoin)>=koin){
 			lastCoin=(this.time);
