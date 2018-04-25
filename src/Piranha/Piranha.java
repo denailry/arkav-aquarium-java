@@ -94,7 +94,7 @@ public class Piranha extends Fish{
 
 	public void tick(LinkedList<Guppy> guppies, LinkedList<Coin> coins, double delay){	//belum diimplementasi
 		boolean cek = false;
-		
+		super.tick(delay);
 		if (this.hunger){
 			if ((this.time - this.lastFed)>=lapar+mati){
 				this.remove();
@@ -115,7 +115,7 @@ public class Piranha extends Fish{
 						//ngejar guppy, belum implementasi (findNearestFood, setDir, setSpeed)
 						if (guppy != null){
 							setDirection(Math.atan2(guppy.getY()-this.getY(), guppy.getX()-this.getX()));
-							if ((getDirection()>=2*Math.atan(1))&&(getDirection()<=6*Math.atan(1))){
+							if ((Math.cos(this.getDirection()))<0){
 								setDirRight(true);
 							}
 							else {
@@ -155,7 +155,7 @@ public class Piranha extends Fish{
 				lastDrift = this.time;
 			}
 
-			if ((getDirection()>=2*Math.atan(1))&&(getDirection()<=6*Math.atan(1))){
+			if ((Math.cos(this.getDirection()))<0){
 				setDirRight(true);
 			}
 			else {
