@@ -115,7 +115,7 @@ public class Piranha extends Fish{
 						//ngejar guppy, belum implementasi (findNearestFood, setDir, setSpeed)
 						if (guppy != null){
 							setDirection(Math.atan2(guppy.getY()-this.getY(), guppy.getX()-this.getX()));
-							if ((getDirection()>=2*Math.atan(1))&&(getDirection()<=6*Math.atan(1))){
+							if ((Math.cos(this.getDirection()))<0){
 								setDirRight(true);
 							}
 							else {
@@ -155,7 +155,7 @@ public class Piranha extends Fish{
 				lastDrift = this.time;
 			}
 
-			if ((getDirection()>=2*Math.atan(1))&&(getDirection()<=6*Math.atan(1))){
+			if ((Math.cos(this.getDirection()))<0){
 				setDirRight(true);
 			}
 			else {
