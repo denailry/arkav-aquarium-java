@@ -79,8 +79,10 @@ public class Aquarium extends Tick implements Space {
 	private void checkLoseCondition() {
 		if (this.coins.size() == 0 && 
 			this.foods.size() == 0 &&
+			this.guppies.size() == 0 &&
 			this.piranhas.size() == 0 &&
 			this.money < 10) {
+				System.out.println("GAME OVER");
 				this.gameOver = true;
 		}
 	}

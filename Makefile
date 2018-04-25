@@ -25,6 +25,7 @@ SOURCES = \
 	src/Piranha/PiranhaTest.java \
 	src/Aquarium/Aquarium.java \
 	src/Aquarium/AquariumTest.java \
+	src/Aquarium/ShopItem.java \
 	src/Snail/Snail.java \
 	src/Snail/SnailTest.java \
 	src/Area/Area.java \

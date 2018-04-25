@@ -78,17 +78,23 @@ public class Screen extends JPanel {
 		for (Area area : areas) {
 			if (area.isInside(x, y)) {
 				if (area.getName().equals("aquarium")) {
-					aquarium.add(new Food(x, y, 0, 0));
+					if (aquarium.buy(ShopItem.FOOD.price)) {
+						aquarium.add(new Food(x, y, 0, 0));
+					}
 				} else if (area.getName().equals(AREA_NAMES[0])) {
-					aquarium.add(new Guppy(randomX(), this.aquarium.getTop(), 0, 0));
+					if (aquarium.buy(ShopItem.GUPPY.price)) {
+						aquarium.add(new Guppy(randomX(), this.aquarium.getTop(), 0, 0));
+					}
 				} else if (area.getName().equals(AREA_NAMES[1])) {
-					aquarium.add(new Piranha(randomX(), this.aquarium.getTop(), 0, 0));
+					if (aquarium.buy(ShopItem.PIRANHA.price)) {
+						aquarium.add(new Piranha(randomX(), this.aquarium.getTop(), 0, 0));
+					}
 				} else if (area.getName().equals(AREA_NAMES[2])) {
-					aquarium.buy(10);
+					aquarium.buy(ShopItem.EGG_1.price);
 				} else if (area.getName().equals(AREA_NAMES[3])) {
-					aquarium.buy(20);
+					aquarium.buy(ShopItem.EGG_2.price);
 				} else if (area.getName().equals(AREA_NAMES[4])) {
-					aquarium.buy(40);
+					aquarium.buy(ShopItem.EGG_3.price);
 				}
 			}
 		}
