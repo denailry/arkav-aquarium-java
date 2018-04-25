@@ -7,11 +7,17 @@ SOURCES = \
 	src/Entity/Entity.java \
 	src/Entity/EntityType.java \
 	src/Item/Item.java \
+	src/Food/Food.java \
 	src/Coin/Coin.java \
 	src/Element/Element.java \
 	src/LinkedList/LinkedList.java \
+	src/Fish/Fish.java \
+	src/Guppy/Guppy.java \
+	src/Aquarium/Aquarium.java \
 	src/Snail/Snail.java \
-	src/Snail/SnailTest.java
+	src/Piranha/Piranha.java \
+	src/Snail/SnailTest.java 
+	
 TARGET = bin
 
 default:

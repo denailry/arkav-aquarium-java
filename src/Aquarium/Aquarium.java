@@ -55,7 +55,7 @@ public class Aquarium extends Tick implements Space {
 			eGuppy.getInfo().tick(guppyFoods, newCoins, delay);
 			eGuppy = eGuppy.getNext();
 		}
-		coins.add(newCoins);
+		this.add(newCoins);
 	}
 
 	private void tickPiranhas(double delay) {
@@ -66,7 +66,7 @@ public class Aquarium extends Tick implements Space {
 			ePiranha.getInfo().tick(piranhaFoods, newCoins, delay);
 			ePiranha = ePiranha.getNext();
 		}
-		coins.add(newCoins);
+		this.add(newCoins);
 	}
 
 	private void tickSnail(double delay) {
@@ -120,7 +120,15 @@ public class Aquarium extends Tick implements Space {
 		}
 	}
 
-	public <T extends Entity> boolean add(T object) {
+	public <T extends Entity> void add(LinkedList<T> list) {
+		Element<T> element = list.getFirst();
+		while (element != null) {
+			this.add(element.getInfo());
+			element = element.getNext();
+		}
+	}
+
+	public <T extends Entity> void add(T object) {
 		if (object.getType() == EntityType.COIN) {
 			coins.add((Coin) object);
 		} else if (object.getType() == EntityType.FOOD) {
@@ -132,12 +140,11 @@ public class Aquarium extends Tick implements Space {
 		} else if (object.getType() == EntityType.SNAIL) {
 			this.snail = (Snail) object;
 		} else {
-			return false;
+			return;
 		}
 		object.setSpace(this);
 		object.setId(nObject);
 		nObject++;
-		return true;
 	}
 
 	@Override
@@ -200,6 +207,22 @@ public class Aquarium extends Tick implements Space {
 
 	public LinkedList<Piranha> getPiranhas() {
 		return new LinkedList<Piranha>(this.piranhas);
+	}
+
+	public int getLeft() {
+		return this.left;
+	}
+
+	public int getRight() {
+		return this.right;
+	}
+
+	public int getTop() {
+		return this.top;
+	}
+
+	public int getBottom() {
+		return this.bottom;
 	}
 
 	public Snail getSnail() {

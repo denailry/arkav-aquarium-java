@@ -6,7 +6,7 @@ public class Food extends Item{
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setDirection(Math.atan(1)*4.0/2.0);
-		this.setImage("resources/food.png");
+		this.setImage("food.png");
 	}
 
 	public void tick(double delay){
