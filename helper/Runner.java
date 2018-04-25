@@ -11,7 +11,11 @@ public class Runner {
 			"EntityTest",
 			"FishTest",
 			"LinkedListTest",
-			"TickTest"
+			"TickTest",
+			"CoinTest",
+			"GuppyTest",
+			"PiranhaTest",
+			"SnailTest"
 		};
 	private static final String MAIN_COMMAND = "java -cp \"bin;lib/junit-4.12.jar;lib/hamcrest-core-1.3.jar\" Main";
 
