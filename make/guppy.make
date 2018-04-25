@@ -13,7 +13,11 @@ SOURCES = \
 	src/LinkedList/LinkedList.java \
 	src/Fish/Fish.java \
 	src/Guppy/Guppy.java \
-	src/Guppy/GuppyTest.java
+	src/Guppy/GuppyTest.java \
+	src/Aquarium/Aquarium.java \
+	src/Snail/Snail.java \
+	src/Piranha/Piranha.java 
+	
 TARGET = bin
 
 default:
