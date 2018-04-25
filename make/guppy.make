@@ -16,8 +16,7 @@ SOURCES = \
 	src/Guppy/GuppyTest.java \
 	src/Aquarium/Aquarium.java \
 	src/Snail/Snail.java \
-	src/Piranha/Piranha.java \
-	src/Piranha/PiranhaTest.java 
+	src/Piranha/Piranha.java 
 	
 TARGET = bin
 
