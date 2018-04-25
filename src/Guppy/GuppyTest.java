@@ -7,7 +7,7 @@ public class GuppyTest {
 	public void testGuppyLastFed(){
 	  	Guppy guppy = new Guppy(3,4,100,100);
 	  	guppy.setLastFed(10);
-			int lastFed = guppy.getLastFed();
+		int lastFed = guppy.getLastFed();
 	  	assertEquals("Should return 10", 10, lastFed);
 	}
 
@@ -16,7 +16,7 @@ public class GuppyTest {
 		Aquarium aquarium = new Aquarium(200,200,200,200);	
 	  	Guppy guppy = new Guppy(3,4,100,100);
 	  	Food food = new Food(3,4,50,50);
-	  	boolean bool = aquarium.add(food);
+	  	aquarium.add(food);
 	  	assertTrue("Should be able to consume", guppy.isAbleToConsume(food));
 	}
 

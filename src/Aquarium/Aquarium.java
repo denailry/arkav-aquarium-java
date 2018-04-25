@@ -82,7 +82,6 @@ public class Aquarium extends Tick implements Space {
 			this.guppies.size() == 0 &&
 			this.piranhas.size() == 0 &&
 			this.money < 10) {
-				System.out.println("GAME OVER");
 				this.gameOver = true;
 		}
 	}
@@ -245,5 +244,12 @@ public class Aquarium extends Tick implements Space {
 
 	public boolean isGameOver() {
 		return this.gameOver;
+	}
+
+	public void clean() {
+		this.coins = new LinkedList<Coin>();
+		this.foods = new LinkedList<Food>();
+		this.guppies = new LinkedList<Guppy>();
+		this.piranhas = new LinkedList<Piranha>();
 	}
 }

@@ -121,4 +121,25 @@ public class AquariumTest {
 		aq.tick(0);
 		assertTrue("Should have been game over", aq.isGameOver());
 	}
+
+	@Test
+	public void testClean() {
+		for (int i = 0; i < 5; i++) {
+			this.aquarium.add(new Coin(0, 0, 0, 0, 0));
+		}
+		for (int i = 0; i < 5; i++) {
+			this.aquarium.add(new Food(0, 0, 0, 0));
+		}
+		for (int i = 0; i < 5; i++) {
+			this.aquarium.add(new Guppy(0, 0, 0, 0));
+		}
+		for (int i = 0; i < 5; i++) {
+			this.aquarium.add(new Piranha(0, 0, 0, 0));
+		}
+		this.aquarium.clean();
+		assertEquals("There should be no coins after cleaning", 0, this.aquarium.getCoins().size());
+		assertEquals("There should be no foods after cleaning", 0, this.aquarium.getFoods().size());
+		assertEquals("There should be no guppies after cleaning", 0, this.aquarium.getGuppies().size());
+		assertEquals("There should be no piranhas after cleaning", 0, this.aquarium.getPiranhas().size());
+	}
 }
