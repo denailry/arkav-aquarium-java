@@ -3,4 +3,4 @@ bin/*
 */.DS_Store
 */*/.DS_Store
 log/*
-checkstyle/result/*
+checkstyle/results/*

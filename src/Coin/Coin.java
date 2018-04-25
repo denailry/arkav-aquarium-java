@@ -9,7 +9,7 @@ public class Coin extends Item{
 		this.setHeight(height);
 		this.value = nilai;
 		this.setDirection(Math.atan(1)*4.0/2.0);
-		this.setImage("resources/koin-mahal.png");
+		this.setImage("koin-mahal.png");
 	}
 
 	public int getValue(){ //mendapatkan nilai koin

@@ -16,7 +16,7 @@ public class PiranhaTest {
 		Aquarium aquarium = new Aquarium(200,200,200,200);	
 	  	Piranha piranha = new Piranha(3,4,100,100);
 	  	Guppy guppy = new Guppy(3,4,50,50);
-	  	aquarium.add(guppy);
+	  	boolean cek = aquarium.add(guppy);
 	  	assertTrue("Should be able to consume", piranha.isAbleToConsume(guppy));
 	}
 

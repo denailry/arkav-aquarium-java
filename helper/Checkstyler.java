@@ -11,7 +11,25 @@ public class Checkstyler {
 	private static final String COMMAND = "java -jar lib/checkstyle-8.9-all.jar";
 	private static final String CONFIG = "-c checkstyle/config/google_checks.xml";
 	private static final String[] CLASSES = {
-		"src/Screen.java"
+		"src/Screen/Screen.java",
+		"src/Aquarium/Aquarium.java",
+		"src/Area/Area.java",
+		"src/Coin/Coin.java",
+		"src/Element/Element.java",
+		"src/Entity/Entity.java",
+		"src/Entity/EntityType.java",
+		"src/Fish/Fish.java",
+		"src/Food/Food.java",
+		"src/Frame/Frame.java",
+		"src/Guppy/Guppy.java",
+		"src/Item/Item.java",
+		"src/LinkedList/LinkedList.java",
+		"src/Piranha/Piranha.java",
+		"src/Screen/Screen.java",
+		"src/Snail/Snail.java",
+		"src/Space/Space.java",
+		"src/Tick/Tick.java",
+		"src/Main.java"
 	};
 
 	private static final PrintStream SYSTEM_OUT_DEFAULT = System.out;
@@ -57,10 +75,10 @@ public class Checkstyler {
 					printResult(filepath);
 					resetSystemOut();
 					System.out.println(filepath + " checkstyle result has been generated!");
-				    iClass++;
 		  		} else {
 					System.out.println(filepath + " is not exist!");
 				}
+				iClass++;
 	  		}
 		} else {
 			String filepath = args[0];
