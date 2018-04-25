@@ -14,7 +14,6 @@ public class Food extends Item{
 		double newY = this.getY() + 50*Math.sin(this.getDirection())*delay;
 		if (!(this.move(newX, newY))) {
 			this.remove();
-			System.out.println("a");	
 		}
 	}
 }
