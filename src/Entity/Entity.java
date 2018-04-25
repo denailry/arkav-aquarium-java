@@ -49,6 +49,14 @@ public class Entity extends Tick {
 		return this.x + this.radX;
 	}
 
+	public double getRadX() {
+		return this.radX;
+	}
+
+	public double getRadY() {
+		return this.radY;
+	}
+
 	public double getDirection() {
 		return this.direction;
 	}
@@ -58,20 +66,35 @@ public class Entity extends Tick {
 	}
 
 	public boolean move(double x, double y) {
-		boolean isMoved = this.space.isAbleMovingTo(x, y); 
-		if (isMoved) {
-			this.x = x;
-			this.y = y;
+		if (this.space != null) {
+			boolean isMoved = this.space.isAbleMovingTo(x, y); 
+			if (isMoved) {
+				this.x = x;
+				this.y = y;
+			}
+			return isMoved;
+		} else {
+			System.err.println("Null space, id=" + this.id + ", type=" + this.type);
+			return false;
 		}
-		return isMoved;
 	}
 
 	public boolean isExist() {
-		return this.space.isExist(this.id, this.type);
+		if (this.space != null) {
+			return this.space.isExist(this.id, this.type);
+		} else {
+			System.err.println("Null space, id=" + this.id + ", type=" + this.type);
+			return false;
+		}
 	}
 
 	public void remove() {
-		this.space.remove(this.id, this.type);
+		if (this.space != null) {
+			this.space.remove(this.id, this.type);
+		} else {
+			System.err.println("Null space, id=" + this.id + ", type=" + this.type);
+		}
+		
 	}
 
 	public String getImage() {

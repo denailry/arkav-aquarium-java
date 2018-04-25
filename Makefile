@@ -23,7 +23,9 @@ SOURCES = \
 	src/Aquarium/Aquarium.java \
 	src/Aquarium/AquariumTest.java \
 	src/Snail/Snail.java \
+	src/Area/Area.java \
 	src/Screen/Screen.java \
+	src/Frame/Frame.java \
 	src/Main.java
 TARGET = bin
 

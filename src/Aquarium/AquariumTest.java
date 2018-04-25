@@ -27,6 +27,14 @@ public class AquariumTest {
 	}
 
 	@Test
+	public void testBoundaryInitialization() {
+		assertEquals("Wrong left boundary value from getLeft", this.left, this.aquarium.getLeft());
+		assertEquals("Wrong right boundary value from getRight", this.right, this.aquarium.getRight());
+		assertEquals("Wrong top boundary value from getTop", this.top, this.aquarium.getTop());
+		assertEquals("Wrong bottom boundary value from getBottom", this.bottom, this.aquarium.getBottom());
+	}
+
+	@Test
 	public void testMoney() {
 		assertEquals("Starting money should be 20", 20, aquarium.getMoney());
 		assertTrue("Should be okay to buy with price 10, first buy", aquarium.buy(10));
