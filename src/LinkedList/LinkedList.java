@@ -17,17 +17,23 @@ public class LinkedList<E> {
     return first == null;
   }
 
+  /** get element from indexed linked list
+  * @param index index
+  */
   public E get(int index) {
-    Element<E> P = first;
-      for (int i = 0; i < index; ++i) {
-        if (P == null) {
-          return null;
-        }
-        P = P.getNext();
+    Element<E> p = first;
+    for (int i = 0; i < index; ++i) {
+      if (p == null) {
+        return null;
       }
-      return P.getInfo();
+      p = p.getNext();
+    }
+    return p.getInfo();
   }
 
+  /** remove element at index
+  * @param index index
+  */
   public boolean remove(int index) {
     if (index < 0 || isEmpty()) {
       return false;
@@ -50,9 +56,12 @@ public class LinkedList<E> {
     return true;
   }
 
+  /** add info to linked list, by making new element and tailing it to the list
+  * @param info info
+  */
   public void add(E info) {
     if (isEmpty()) {
-      this.first = new Element <E>();
+      this.first = new Element<E>();
       this.first.setInfo(info);
       this.first.setNext(null);
     } else {
@@ -60,7 +69,7 @@ public class LinkedList<E> {
       while (elmt.getNext() != null) {
         elmt = elmt.getNext();
       }
-      Element<E> newElement = new Element <E>();
+      Element<E> newElement = new Element<E>();
       elmt.setNext(newElement);
       elmt.getNext().setInfo(info);
       elmt.getNext().setNext(null);
@@ -68,6 +77,9 @@ public class LinkedList<E> {
     this.neff++;
   }
 
+  /** add linked list to this linked list
+  * @param linkedList other linkedList
+  */
   public void add(LinkedList<E> linkedList) {
     Element<E> elmt = linkedList.first;
     while (elmt != null) {

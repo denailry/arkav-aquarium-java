@@ -37,8 +37,10 @@ public class Screen extends JPanel {
 	private Map<String, BufferedImage> images = new TreeMap();
 	private Map<String, Font> fonts = new TreeMap();
 	private ArrayList<Area> areas = new ArrayList<Area>();
+	private LinkedList<DummyEntity> dummyList = new LinkedList<DummyEntity>();
 	private Aquarium aquarium;
 	private double secondPerFrame;
+	private boolean running;
 
 	public Screen(int width, int height, int left, int top, double secondPerFrame) throws IOException, FontFormatException {
 		this.defaultImage = ImageIO.read(new File(DEFAULT_IMAGE));
@@ -48,6 +50,7 @@ public class Screen extends JPanel {
 		this.left = left;
 		this.top = top;
 		this.secondPerFrame = secondPerFrame;
+		this.running = true;
 		Integer integer = Integer.valueOf(this.height);
 		Integer res = Double.valueOf(90d*(integer.doubleValue()/600d)).intValue();
 		this.aquarium = new Aquarium(0, width, res, height);
@@ -69,7 +72,18 @@ public class Screen extends JPanel {
 		drawAllEntities(g, aquarium.getGuppies());
 		drawAllEntities(g, aquarium.getPiranhas());
 		drawEntity(g, aquarium.getSnail());
+		drawDummyEntities(g);
 		aquarium.tick(secondPerFrame);
+		if (this.running) {
+			if (aquarium.isGameOver()) {
+				DummyEntity gameOverMessage = new DummyEntity(this.width/2, this.height/2, 3600);
+				gameOverMessage.setImage("game-over.png");
+				this.dummyList.add(gameOverMessage);
+				this.running = false;
+			}
+		} else {
+			aquarium.clean();
+		}
 	}
 
 	public void onMouseEvent(MouseEvent e) {
@@ -77,24 +91,30 @@ public class Screen extends JPanel {
 		int y = e.getY()-this.top;
 		for (Area area : areas) {
 			if (area.isInside(x, y)) {
+				boolean buySuccess = true;
 				if (area.getName().equals("aquarium")) {
-					if (aquarium.buy(ShopItem.FOOD.price)) {
+					if (buySuccess = aquarium.buy(ShopItem.FOOD.price)) {
 						aquarium.add(new Food(x, y, 0, 0));
 					}
 				} else if (area.getName().equals(AREA_NAMES[0])) {
-					if (aquarium.buy(ShopItem.GUPPY.price)) {
+					if (buySuccess = aquarium.buy(ShopItem.GUPPY.price)) {
 						aquarium.add(new Guppy(randomX(), this.aquarium.getTop(), 0, 0));
 					}
 				} else if (area.getName().equals(AREA_NAMES[1])) {
-					if (aquarium.buy(ShopItem.PIRANHA.price)) {
+					if (buySuccess = aquarium.buy(ShopItem.PIRANHA.price)) {
 						aquarium.add(new Piranha(randomX(), this.aquarium.getTop(), 0, 0));
 					}
 				} else if (area.getName().equals(AREA_NAMES[2])) {
-					aquarium.buy(ShopItem.EGG_1.price);
+					buySuccess = aquarium.buy(ShopItem.EGG_1.price);
 				} else if (area.getName().equals(AREA_NAMES[3])) {
-					aquarium.buy(ShopItem.EGG_2.price);
+					buySuccess = aquarium.buy(ShopItem.EGG_2.price);
 				} else if (area.getName().equals(AREA_NAMES[4])) {
-					aquarium.buy(ShopItem.EGG_3.price);
+					buySuccess = aquarium.buy(ShopItem.EGG_3.price);
+				}
+				if (!buySuccess) {
+					DummyEntity notEnoughMoneyMessage = new DummyEntity(this.width-200, 60, 1.5);
+					notEnoughMoneyMessage.setImage("not-enough-money.png");
+					this.dummyList.add(notEnoughMoneyMessage);
 				}
 			}
 		}
@@ -142,6 +162,23 @@ public class Screen extends JPanel {
 				0, this.aquarium.getTop(), images[i]);
 			distanceFromLeft += getImageWidth(images[i]) + margin;
 			this.areas.add(area);
+		}
+	}
+
+	private void drawDummyEntities(Graphics g) {
+		Element<DummyEntity> element = dummyList.getFirst();
+		int i = 0;
+		while (element != null) {
+			DummyEntity dummy = element.getInfo();
+			if (dummy != null) {
+				drawEntity(g, dummy);
+				dummy.tick(this.secondPerFrame);
+				if (dummy.isDie()) {
+					this.dummyList.remove(i);
+				}
+			}
+			element = element.getNext();
+			i++;
 		}
 	}
 

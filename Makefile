@@ -9,6 +9,7 @@ SOURCES = \
 	src/Entity/Entity.java \
 	src/Entity/EntityTest.java \
 	src/Entity/EntityType.java \
+	src/Entity/DummyEntity.java \
 	src/Item/Item.java \
 	src/Food/Food.java \
 	src/Coin/Coin.java \

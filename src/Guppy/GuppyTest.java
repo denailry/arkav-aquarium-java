@@ -7,7 +7,7 @@ public class GuppyTest {
 	public void testGuppyLastFed(){
 	  	Guppy guppy = new Guppy(3,4,100,100);
 	  	guppy.setLastFed(10);
-			int lastFed = guppy.getLastFed();
+		int lastFed = guppy.getLastFed();
 	  	assertEquals("Should return 10", 10, lastFed);
 	}
 
