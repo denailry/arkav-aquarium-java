@@ -37,9 +37,10 @@ public class Screen extends JPanel {
 	private Map<String, BufferedImage> images = new TreeMap();
 	private Map<String, Font> fonts = new TreeMap();
 	private ArrayList<Area> areas = new ArrayList<Area>();
+	private LinkedList<DummyEntity> dummyList = new LinkedList<DummyEntity>();
 	private Aquarium aquarium;
 	private double secondPerFrame;
-	private DummyEntity notEnoughMoneyMessage;
+	private boolean running;
 
 	public Screen(int width, int height, int left, int top, double secondPerFrame) throws IOException, FontFormatException {
 		this.defaultImage = ImageIO.read(new File(DEFAULT_IMAGE));
@@ -49,6 +50,7 @@ public class Screen extends JPanel {
 		this.left = left;
 		this.top = top;
 		this.secondPerFrame = secondPerFrame;
+		this.running = true;
 		Integer integer = Integer.valueOf(this.height);
 		Integer res = Double.valueOf(90d*(integer.doubleValue()/600d)).intValue();
 		this.aquarium = new Aquarium(0, width, res, height);
@@ -72,6 +74,16 @@ public class Screen extends JPanel {
 		drawEntity(g, aquarium.getSnail());
 		drawDummyEntities(g);
 		aquarium.tick(secondPerFrame);
+		if (this.running) {
+			if (aquarium.isGameOver()) {
+				DummyEntity gameOverMessage = new DummyEntity(this.width/2, this.height/2, 3600);
+				gameOverMessage.setImage("game-over.png");
+				this.dummyList.add(gameOverMessage);
+				this.running = false;
+			}
+		} else {
+			aquarium.clean();
+		}
 	}
 
 	public void onMouseEvent(MouseEvent e) {
@@ -100,8 +112,9 @@ public class Screen extends JPanel {
 					buySuccess = aquarium.buy(ShopItem.EGG_3.price);
 				}
 				if (!buySuccess) {
-					this.notEnoughMoneyMessage = new DummyEntity(this.width-200, 60, 1.5);
-					this.notEnoughMoneyMessage.setImage("not-enough-money.png");
+					DummyEntity notEnoughMoneyMessage = new DummyEntity(this.width-200, 60, 1.5);
+					notEnoughMoneyMessage.setImage("not-enough-money.png");
+					this.dummyList.add(notEnoughMoneyMessage);
 				}
 			}
 		}
@@ -153,12 +166,19 @@ public class Screen extends JPanel {
 	}
 
 	private void drawDummyEntities(Graphics g) {
-		if (this.notEnoughMoneyMessage != null) {
-			drawEntity(g, this.notEnoughMoneyMessage);
-			this.notEnoughMoneyMessage.tick(this.secondPerFrame);
-			if (this.notEnoughMoneyMessage.isDie()) {
-				this.notEnoughMoneyMessage = null;
+		Element<DummyEntity> element = dummyList.getFirst();
+		int i = 0;
+		while (element != null) {
+			DummyEntity dummy = element.getInfo();
+			if (dummy != null) {
+				drawEntity(g, dummy);
+				dummy.tick(this.secondPerFrame);
+				if (dummy.isDie()) {
+					this.dummyList.remove(i);
+				}
 			}
+			element = element.getNext();
+			i++;
 		}
 	}
 
